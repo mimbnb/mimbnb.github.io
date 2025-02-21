@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Internet Money ($MIM) - Where Magic Meets Money 🪄✨</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Press+Start+2P&family=VT323&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #6a1b9a;
+            --secondary: #3949ab;
+            --accent: #ff1744;
+            --text: #ffffff;
+            --background: #1a1a2e;
+            --heading-font: 'Press Start 2P', cursive;
+            --meme-font: 'Comic Neue', cursive;
+            --accent-font: 'Permanent Marker', cursive;
+            --mono-font: 'VT323', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--meme-font);
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+            font-size: 1.1rem;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--heading-font);
+            letter-spacing: 1px;
+            line-height: 1.4;
+        }
+
+        .magic-sparkle {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(106, 27, 154, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(57, 73, 171, 0.1) 0%, transparent 50%);
+            z-index: -2;
+        }
+
+        .fixed-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background);
+            z-index: -3;
+        }
+
+        .floating-coins {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .coin {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at center,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(255, 255, 255, 0.2) 50%,
+                transparent 100%);
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+            box-shadow: 0 0 20px rgba(255, 23, 68, 0.4);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ff1744, #6a1b9a, #3949ab);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite;
+            font-family: var(--heading-font);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-family: var(--accent-font);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .button-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero .buy-button {
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulseGlow 2s infinite;
+            margin: 0;
+            width: 180px;
+            height: 50px;
+            font-family: var(--heading-font);
+            text-transform: uppercase;
+            transform-style: preserve-3d;
+        }
+
+        .hero .dex-link {
+            background: url('./assets/dexscreener-logo.png') center/cover no-repeat;
+            font-size: 0;
+            overflow: hidden;
+            padding: 0;
+            width: 180px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            animation: pulseGlow 2s infinite;
+            margin: 0;
+            transform: none;
+        }
+
+        .hero .buy-button:hover {
+            transform: translateY(-3px) rotate(-2deg);
+            box-shadow: 0 10px 20px rgba(255, 23, 68, 0.4);
+            color: var(--text);
+        }
+
+        .hero .dex-link:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .tokenomics-card {
+            background: rgba(106, 27, 154, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .highlight-box {
+            background: linear-gradient(45deg, rgba(106, 27, 154, 0.2), rgba(57, 73, 171, 0.2));
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .highlight-box p {
+            font-family: var(--meme-font);
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .meme-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            grid-auto-flow: dense;
+        }
+
+        .meme-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            height: fit-content;
+        }
+
+        .meme-card.portrait {
+            grid-row: span 2;
+        }
+
+        .meme-card.landscape {
+            grid-column: span 1;
+        }
+
+        .meme-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+            object-fit: contain;
+        }
+
+        .meme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(106, 27, 154, 0.2);
+        }
+
+        .meme-card:hover img {
+            transform: scale(1.02);
+        }
+
+        .meme-actions {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .meme-card:hover .meme-actions {
+            opacity: 1;
+        }
+
+        .share-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .share-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 23, 68, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(255, 23, 68, 0.8); }
+        }
+
+        @keyframes float {
+            0% { 
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .meme-generator {
+            background: rgba(106, 27, 154, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .meme-generator input,
+        .meme-generator textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: var(--text);
+        }
+
+        .magic-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--text);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 1rem 0;
+            font-family: var(--heading-font);
+            text-transform: uppercase;
+            transform-style: preserve-3d;
+        }
+
+        .magic-button:hover {
+            transform: translateY(-3px) rotate(-2deg);
+            box-shadow: 0 10px 20px rgba(106, 27, 154, 0.4);
+        }
+
+        .tokenomics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tokenomics-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .tokenomics-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .tokenomics-item h3 {
+            font-family: var(--heading-font);
+            font-size: 1.4rem;
+            margin: 1rem 0;
+        }
+
+        .tokenomics-item p {
+            font-family: var(--mono-font);
+            font-size: 1.3rem;
+        }
+
+        .magic-chart {
+            width: 100%;
+            height: 300px;
+            margin: 2rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magic-chart::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(106, 27, 154, 0.2) 0%,
+                rgba(57, 73, 171, 0.2) 50%,
+                rgba(255, 23, 68, 0.2) 100%);
+            animation: chartGlow 5s infinite;
+        }
+
+        @keyframes chartGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .copy-address {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 25px;
+            margin: 2rem auto;
+            max-width: 600px;
+            flex-wrap: wrap;
+        }
+
+        .copy-address code {
+            font-family: var(--mono-font);
+            color: var(--accent);
+            word-break: break-all;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .copy-button {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .copy-address {
+                padding: 0.75rem;
+                gap: 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .copy-address code {
+                font-size: 0.8rem;
+            }
+
+            .copy-button {
+                padding: 0.3rem;
+            }
+        }
+
+        .copy-button:hover {
+            color: var(--accent);
+        }
+
+        .meme-upload {
+            margin: 2rem 0;
+            padding: 2rem;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .meme-upload label {
+            cursor: pointer;
+            color: var(--accent);
+        }
+
+        .meme-upload input[type="file"] {
+            display: none;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            animation: navFloat 3s ease-in-out infinite;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            position: absolute;
+            right: 2rem;
+            top: 1.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: var(--text);
+            border-radius: 10px;
+            transition: all 0.3s linear;
+            position: relative;
+            transform-origin: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            min-width: 120px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            font-family: var(--mono-font);
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links .highlight-link {
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--text);
+            box-shadow: 0 0 15px rgba(255, 23, 68, 0.3);
+        }
+
+        .nav-links .highlight-link:hover {
+            color: var(--text);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 23, 68, 0.5);
+        }
+
+        .nav-links .dex-link {
+            background: url('./assets/dexscreener-logo.png') center/cover no-repeat;
+            font-size: 0;
+            overflow: hidden;
+            transform: scale(1.2);
+            padding: 0;
+            width: 120px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links .dex-link:hover {
+            transform: translateY(-2px) scale(1.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-links .dex-link::before {
+            display: none;
+        }
+
+        .buy-button {
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--text);
+            text-decoration: none;
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulseGlow 2s infinite;
+            font-family: var(--heading-font);
+            text-transform: uppercase;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px) rotate(-2deg);
+            box-shadow: 0 10px 20px rgba(255, 23, 68, 0.4);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            font-size: 1.5rem;
+        }
+
+        .timeline-content.left::before {
+            right: -3rem;
+        }
+
+        .timeline-content.right::before {
+            left: -3rem;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .template-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .template-item:hover {
+            transform: scale(1.05);
+        }
+
+        .template-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .footer {
+            background: rgba(26, 26, 46, 0.9);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        @keyframes navFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 23, 68, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(255, 23, 68, 0.6); }
+        }
+
+        .price-ticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            z-index: 1000;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ticker-item .value {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .calculator {
+            background: rgba(106, 27, 154, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .calculator input {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: var(--text);
+            font-size: 1.1rem;
+        }
+
+        .calculator-result {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            animation: resultGlow 2s infinite;
+            font-family: var(--mono-font);
+            font-size: 1.3rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .share-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .share-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .meme-card {
+            position: relative;
+        }
+
+        .meme-actions {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-around;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .meme-card:hover .meme-actions {
+            opacity: 1;
+        }
+
+        @keyframes resultGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 23, 68, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 23, 68, 0.4); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+            }
+
+            .nav {
+                padding: 0.5rem;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                background: rgba(26, 26, 46, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 2rem;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:first-child {
+                transform: rotate(45deg);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:last-child {
+                transform: rotate(-45deg);
+            }
+
+            .price-ticker {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-content {
+                width: 90%;
+                margin-left: 40px;
+            }
+
+            .timeline-content::before {
+                left: -30px !important;
+                right: auto !important;
+            }
+
+            .meme-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            .meme-card.portrait {
+                grid-row: auto;
+            }
+
+            .meme-card.landscape {
+                grid-column: auto;
+            }
+        }
+
+        /* Enhanced Animations */
+        .magic-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .magic-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tokenomics-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tokenomics-item::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--background);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid transparent;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Particle Effects */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Enhanced Coin Effects */
+        .coin::before {
+            content: '$';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--accent);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 23, 68, 0.8);
+        }
+
+        /* Magic Wand Cursor */
+        .magic-cursor {
+            width: 20px;
+            height: 20px;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        /* Achievement Notification */
+        .achievement {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: rgba(106, 27, 154, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            color: var(--text);
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 0 20px rgba(255, 23, 68, 0.4);
+        }
+
+        .achievement.show {
+            transform: translateX(0);
+        }
+
+        /* Enhanced Calculator */
+        .calculator-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            justify-content: center;
+        }
+
+        .calculator-tab {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calculator-tab.active {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Magic Portal Effect */
+        .portal-effect {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                var(--primary),
+                var(--secondary),
+                var(--accent),
+                var(--primary)
+            );
+            animation: portalSpin 2s linear infinite;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes portalSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* How to Buy Section Styles */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step-card {
+            background: rgba(106, 27, 154, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(106, 27, 154, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 23, 68, 0.4);
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            animation: iconWiggle 2s ease-in-out infinite;
+        }
+
+        .step-card h3 {
+            font-family: var(--heading-font);
+            font-size: 1.3rem;
+            margin: 1rem 0;
+            color: var(--text);
+        }
+
+        .step-detail {
+            text-align: left;
+            margin-top: 1rem;
+            font-family: var(--meme-font);
+            font-size: 1.1rem;
+        }
+
+        .step-detail ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-detail ul li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .step-detail ul li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+        }
+
+        .contract-info {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .copy-address.large {
+            font-size: 1.2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            max-width: 800px;
+        }
+
+        .copy-address.large .copy-button {
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Mobile Responsiveness for How to Buy */
+        @media (max-width: 768px) {
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-card {
+                margin: 1rem 0;
+            }
+            
+            .copy-address.large {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+        }
+
+        /* Magical Story Section Styles */
+        .story-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .story-card {
+            background: rgba(106, 27, 154, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: translateY(-100%);
+            animation: shimmer 3s infinite;
+        }
+
+        .story-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(20px);
+            box-shadow: 0 15px 30px rgba(106, 27, 154, 0.3);
+        }
+
+        .story-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 23, 68, 0.5);
+            position: relative;
+        }
+
+        .story-card h3::before {
+            content: '✨';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            animation: sparkle 2s infinite;
+        }
+
+        .story-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
+        }
+
+        .magic-circle {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                var(--primary),
+                var(--secondary),
+                var(--accent),
+                var(--primary)
+            );
+            filter: blur(20px);
+            opacity: 0.1;
+            animation: rotate 10s linear infinite;
+        }
+
+        .magic-circle:nth-child(1) { top: -50px; left: -50px; }
+        .magic-circle:nth-child(2) { bottom: -50px; right: -50px; }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1) translateY(-50%); }
+            50% { opacity: 0.5; transform: scale(1.2) translateY(-50%); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .story-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .story-card {
+                margin: 1rem 0;
+            }
+
+            .story-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Mascot Wizard Styles */
+        .wizard-mascot {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(106, 27, 154, 0.5));
+            animation: floatWizard 3s ease-in-out infinite;
+        }
+
+        .hero .wizard-mascot {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 200px;
+            height: 200px;
+            z-index: 2;
+        }
+
+        .story-container .wizard-mascot {
+            position: absolute;
+            left: 50%;
+            top: -75px;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .calculator .wizard-mascot {
+            position: absolute;
+            left: -75px;
+            top: 50%;
+            transform: translateY(-50%) scaleX(-1);
+            z-index: 2;
+        }
+
+        @keyframes floatWizard {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(10px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero .wizard-mascot {
+                width: 120px;
+                height: 120px;
+                top: 20px;
+                right: 20px;
+                transform: none;
+            }
+
+            .story-container .wizard-mascot,
+            .calculator .wizard-mascot {
+                display: none;
+            }
+        }
+
+        /* Flying Wizard Styles */
+        .flying-wizard {
+            position: fixed;
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 15px rgba(106, 27, 154, 0.6));
+            will-change: transform;
+        }
+
+        .wizard-trace {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+            z-index: 9998;
+            background: radial-gradient(circle at center,
+                rgba(255, 23, 68, 0.8),
+                rgba(106, 27, 154, 0.6),
+                transparent 80%);
+            border-radius: 50%;
+            animation: fadeTrace 1.2s ease-out forwards;
+            will-change: transform, opacity;
+        }
+
+        @keyframes fadeTrace {
+            0% { transform: scale(1.2); opacity: 0.9; }
+            100% { transform: scale(0.4); opacity: 0; }
+        }
+
+        @keyframes wizardSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-15deg) scale(1.05); }
+            75% { transform: rotate(15deg) scale(1.05); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+
+        .disclaimer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+            font-family: var(--mono-font);
+        }
+
+        .disclaimer p {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .disclaimer {
+                padding: 1.5rem;
+                font-size: 0.7rem;
+                line-height: 1.6;
+            }
+        }
+
+        /* Add some fun rotation to icons */
+        @keyframes iconWiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-background"></div>
+    <nav class="nav">
+        <button class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#tokenomics">Tokenomics</a></li>
+            <li><a href="#memes">Memes</a></li>
+            <li><a href="#socials">Community</a></li>
+            <li><a href="#how-to-buy" class="highlight-link">How to Buy</a></li>
+        </ul>
+    </nav>
+
+    <div class="magic-sparkle"></div>
+    
+    <section class="hero">
+        <div class="floating-coins">
+            <!-- Coins will be added via JavaScript -->
+        </div>
+        <h1>Magic Internet Money</h1>
+        <p>Where Magic Meets Money 🪄✨</p>
+        <div class="highlight-box">
+            <h3>5% USDT Rewards</h3>
+            <p>Magic Internet Money rewards all holders with USDT based on 5% of the total volume.</p>
+            <p>The contract will accumulate tokens from all transactions buys and sells and automatically disperse the rewards to the holders in $USDT.</p>
+        </div>
+        <div class="button-container">
+            <a href="https://pancakeswap.finance/?inputCurrency=BNB&outputCurrency=0x57C183F5320F645536EBC363156Ba16ce90ee26f" target="_blank" class="buy-button">Buy</a>
+            <a href="https://dexscreener.com/bsc/0x57C183F5320F645536EBC363156Ba16ce90ee26f" target="_blank" class="dex-link" title="View on Dexscreener">DexScreener</a>
+        </div>
+    </section>
+
+    <section class="section" id="how-to-buy">
+        <h2>How to Buy $MIM ✨</h2>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <i class="fas fa-wallet step-icon"></i>
+                <h3>Create Wallet</h3>
+                <p>Download and install MetaMask or Trust Wallet from your app store</p>
+                <div class="step-detail">
+                    <ul>
+                        <li>iOS/Android supported</li>
+                        <li>Create a new wallet</li>
+                        <li>Write down your recovery phrase</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <i class="fas fa-coins step-icon"></i>
+                <h3>Get BNB</h3>
+                <p>Buy BNB through your wallet or transfer from an exchange</p>
+                <div class="step-detail">
+                    <ul>
+                        <li>Buy directly in MetaMask</li>
+                        <li>Or transfer from Binance</li>
+                        <li>Ensure it's BNB (BSC)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <i class="fas fa-exchange-alt step-icon"></i>
+                <h3>Swap on PancakeSwap</h3>
+                <p>Visit our swap page and connect your wallet</p>
+                <div class="step-detail">
+                    <ul>
+                        <li>Set slippage to 12%</li>
+                        <li>Enter amount of BNB</li>
+                        <li>Click "Swap"</li>
+                    </ul>
+                </div>
+                <a href="https://pancakeswap.finance/?inputCurrency=BNB&outputCurrency=0x57C183F5320F645536EBC363156Ba16ce90ee26f" target="_blank" class="">
+                    Open PancakeSwap 
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <i class="fas fa-check-circle step-icon"></i>
+                <h3>Hold & Earn</h3>
+                <p>Watch your USDT rewards grow automatically</p>
+                <div class="step-detail">
+                    <ul>
+                        <li>Rewards every 60 minutes</li>
+                        <li>No claim needed</li>
+                        <li>Track in your wallet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="tokenomics">
+        <h2>Magical Tokenomics 🎯</h2>
+        <div class="tokenomics-card">
+            <div class="copy-address">
+                <code>0x57C183F5320F645536EBC363156Ba16ce90ee26f</code>
+                <button class="copy-button" onclick="copyAddress()">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="tokenomics-grid">
+                <div class="tokenomics-item">
+                    <i class="fas fa-coins"></i>
+                    <h3>Total Supply</h3>
+                    <p>1,000,000,000,000 $MIM</p>
+                </div>
+                <div class="tokenomics-item">
+                    <i class="fas fa-gift"></i>
+                    <h3>USDT Rewards</h3>
+                    <p>5% of Every Transaction</p>
+                    <p class="tokenomics-detail">Automatically distributed to holders in USDT</p>
+                </div>
+                <!-- <div class="tokenomics-item">
+                    <i class="fas fa-lock"></i>
+                    <h3>Liquidity</h3>
+                    <p>5% Auto-LP</p>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="section" id="story">
+        <h2>Our Magical Story ✨</h2>
+        <div class="story-container">
+            <div class="magic-circle"></div>
+            
+            <div class="story-card">
+                <i class="fas fa-hat-wizard story-icon"></i>
+                <h3>The Genesis</h3>
+                <p>In the mystical realms of the blockchain, $MIM emerged as a powerful force, combining the ancient art of meme magic with modern DeFi innovation. Our journey began with a vision to create not just another token, but a magical ecosystem where internet culture meets real value.</p>
+            </div>
+
+            <div class="story-card">
+                <i class="fas fa-users story-icon"></i>
+                <h3>Community Magic</h3>
+                <p>As word spread through the crypto realms, magical beings from all corners of the internet gathered, forming a vibrant community of believers and memetic sorcerers. Together, we've created a space where creativity flows freely and rewards manifest naturally.</p>
+            </div>
+
+            <div class="story-card">
+                <i class="fas fa-gem story-icon"></i>
+                <h3>USDT Rewards</h3>
+                <p>Through advanced tokenomics enchantments, we crafted a unique 5/5% magical redistribution system. Like a well-cast spell, every transaction automatically generates USDT rewards for our holders, creating a sustainable cycle of wealth generation.</p>
+            </div>
+
+            <div class="story-card">
+                <i class="fas fa-rocket story-icon"></i>
+                <h3>Future Visions</h3>
+                <p>As we gaze into our crystal ball, we see a future where $MIM becomes the cornerstone of memetic magic in the crypto space. With upcoming enchanted features and expanding magical utilities, our journey is just beginning.</p>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="section" id="calculator">
+        <h2>Magical Rewards Calculator ✨</h2>
+        <div class="calculator">
+            <h3>Calculate Your USDT Rewards</h3>
+            <p class="calculator-info">5% of all transaction volume is distributed to holders in USDT rewards</p>
+            <div class="calculator-inputs">
+                <input type="number" id="holdingAmount" placeholder="Enter your $MIM holdings">
+                <input type="number" id="dailyVolume" placeholder="Expected 24h Volume in USD">
+                <button class="magic-button" onclick="calculateRewards()">Calculate Rewards 🪄</button>
+            </div>
+            <div class="calculator-result" id="rewardResult">
+                Your daily USDT rewards will appear here ✨
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="memes">
+        <h2>Magical Meme Gallery 🎭</h2>
+        <div class="meme-gallery">
+            <div class="meme-card landscape">
+                <img src="./assets/1.jpeg" alt="Magic Internet Money Meme 1">
+            </div>
+            <div class="meme-card square">
+                <img src="./assets/2.jpeg" alt="Magic Internet Money Meme 2">
+            </div>
+            <div class="meme-card landscape">
+                <img src="./assets/3.jpeg" alt="Magic Internet Money Meme 3">
+            </div>
+            <div class="meme-card square">
+                <img src="./assets/4.jpeg" alt="Magic Internet Money Meme 4">
+            </div>
+            <div class="meme-card portrait">
+                <img src="./assets/5.jpeg" alt="Magic Internet Money Meme 5">
+            </div>
+            <div class="meme-card landscape">
+                <img src="./assets/6.jpeg" alt="Magic Internet Money Meme 6">
+            </div>
+            <div class="meme-card portrait">
+                <img src="./assets/7.jpeg" alt="Magic Internet Money Meme 7">
+            </div>
+            <div class="meme-card square">
+                <img src="./assets/8.jpeg" alt="Magic Internet Money Meme 8">
+            </div>
+            <div class="meme-card square">
+                <img src="./assets/9.jpeg" alt="Magic Internet Money Meme 9">
+            </div>
+            <div class="meme-card portrait">
+                <img src="./assets/10.jpeg" alt="Magic Internet Money Meme 10">
+            </div>
+            <div class="meme-card square">
+                <img src="./assets/11.jpeg" alt="Magic Internet Money Meme 11">
+            </div>
+            <div class="meme-card square">
+                <img src="./assets/12.jpeg" alt="Magic Internet Money Meme 12">
+            </div>
+            <div class="meme-card landscape">
+                <img src="./assets/13.jpeg" alt="Magic Internet Money Meme 13">
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="socials">
+        <h2>Join Our Magical Community 🌟</h2>
+        <div class="social-links">
+            <a href="https://t.me/MagicInternetMoney_BSC" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://x.com/Mim_On_BSC" target="_blank"><i class="fab fa-twitter"></i></a>
+            <!-- <a href="#" target="_blank"><i class="fab fa-discord"></i></a> -->
+        </div>
+    </section>
+
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="disclaimer">
+        <p>
+            MAGIC INTERNET MONEY IS A MEME COIN ON THE BSC BLOCKCHAIN AND IS NOT INVESTMENT ADVICE. THE COIN IS FOR ENTERTAINMENT AND EDUCATIONAL PURPOSES ONLY. THE WIZARD COUNCIL IS NOT LIABLE FOR ANY LOSSES OR DAMAGES. THE MARKET IS VOLATILE; INVEST AT YOUR OWN RISK. NO GUARANTEES OF PROFIT OR VALUE RETENTION. RESEARCH THOROUGHLY BEFORE INVESTING. BY BUYING, YOU ACKNOWLEDGE THE RISKS INVOLVED. WIZARD COUNCIL HAS NO OBLIGATION TO UPDATE INFORMATION. LAWS VARY BY JURISDICTION; COMPLY WITH LOCAL REGULATIONS. THIS DISCLAIMER IS SUBJECT TO CHANGES WITHOUT NOTICE.
+        </p>
+    </div>
+
+    <script>
+        // Add floating coins
+        function createCoins() {
+            const floatingCoins = document.querySelector('.floating-coins');
+            
+            // Clear existing coins
+            floatingCoins.innerHTML = '';
+            
+            // Create initial coins
+            for (let i = 0; i < 20; i++) {
+                const coin = document.createElement('div');
+                coin.className = 'coin';
+                coin.style.left = `${Math.random() * 100}%`;
+                coin.style.animationDelay = `${Math.random() * 5}s`;
+                coin.style.animationDuration = `${6 + Math.random() * 4}s`; // Random duration
+                floatingCoins.appendChild(coin);
+            }
+
+            // Continuously create new coins
+            setInterval(() => {
+                if (document.querySelectorAll('.coin').length < 30) { // Limit maximum coins
+                    const coin = document.createElement('div');
+                    coin.className = 'coin';
+                    coin.style.left = `${Math.random() * 100}%`;
+                    coin.style.animationDuration = `${6 + Math.random() * 4}s`;
+                    floatingCoins.appendChild(coin);
+
+                    // Remove coin after animation
+                    coin.addEventListener('animationend', () => {
+                        coin.remove();
+                    });
+                }
+            }, 1000);
+        }
+
+        function copyAddress() {
+            const address = '0x57C183F5320F645536EBC363156Ba16ce90ee26f';
+            navigator.clipboard.writeText(address);
+            alert('Contract address copied to clipboard! 🪄');
+        }
+
+        function calculateRewards() {
+            const holdings = parseFloat(document.getElementById('holdingAmount').value);
+            const volume = parseFloat(document.getElementById('dailyVolume').value);
+            
+            if (isNaN(holdings) || isNaN(volume)) {
+                alert('Please enter valid numbers! 🔮');
+                return;
+            }
+            
+            // Calculate 5% of volume as USDT rewards
+            const totalRewards = volume * 0.05;
+            // Calculate user's share based on their holdings
+            const userShare = holdings / 1000000000000; // Total supply
+            const dailyRewards = totalRewards * userShare;
+            
+            document.getElementById('rewardResult').innerHTML = `
+                <h3>Your Magical Rewards ✨</h3>
+                <p>Daily USDT Rewards: $${dailyRewards.toFixed(2)}</p>
+                <p>Monthly USDT Rewards: $${(dailyRewards * 30).toFixed(2)}</p>
+                <p>Yearly USDT Rewards: $${(dailyRewards * 365).toFixed(2)}</p>
+            `;
+        }
+
+        // Enhanced meme sharing
+        function shareMeme(memeUrl, platform) {
+            const text = encodeURIComponent('Check out my magical $MIM meme! ✨');
+            let shareUrl;
+            
+            switch(platform) {
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${memeUrl}`;
+                    break;
+                case 'telegram':
+                    shareUrl = `https://t.me/share/url?url=${memeUrl}&text=${text}`;
+                    break;
+                case 'download':
+                    const link = document.createElement('a');
+                    link.href = memeUrl;
+                    link.download = 'magic-meme.png';
+                    link.click();
+                    return;
+            }
+            
+            window.open(shareUrl, '_blank');
+        }
+
+        // Add share buttons to meme cards
+        function addShareButtons(memeCard, memeUrl) {
+            const actions = document.createElement('div');
+            actions.className = 'meme-actions';
+            actions.innerHTML = `
+                <button class="share-button" onclick="shareMeme('${memeUrl}', 'twitter')">
+                    <i class="fab fa-twitter"></i>
+                </button>
+                <button class="share-button" onclick="shareMeme('${memeUrl}', 'telegram')">
+                    <i class="fab fa-telegram"></i>
+                </button>
+                <button class="share-button" onclick="shareMeme('${memeUrl}', 'download')">
+                    <i class="fas fa-download"></i>
+                </button>
+            `;
+            memeCard.appendChild(actions);
+        }
+
+        // Initialize
+        createCoins();
+
+        // Initialize everything
+        createCoins();
+
+        // Add sparkle effect to cursor
+        document.addEventListener('mousemove', (e) => {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.cssText = `
+                position: fixed;
+                pointer-events: none;
+                width: 4px;
+                height: 4px;
+                background: #ff1744;
+                border-radius: 50%;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+                animation: sparkleAnim 1s forwards;
+            `;
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        });
+
+        // Add sparkle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkleAnim {
+                0% { transform: scale(1); opacity: 1; }
+                100% { transform: scale(0); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize price ticker updates
+        function updatePriceTicker() {
+            const price = document.querySelector('.ticker-item .value');
+            const change = document.querySelectorAll('.ticker-item .value')[1];
+            const marketCap = document.querySelectorAll('.ticker-item .value')[2];
+            
+            // Simulate price updates
+            setInterval(() => {
+                const random = Math.random() * 0.0000002 - 0.0000001;
+                const currentPrice = parseFloat(price.textContent.replace('$', ''));
+                const newPrice = currentPrice + random;
+                price.textContent = '$' + newPrice.toFixed(8);
+                
+                const changePercent = (random / currentPrice) * 100;
+                change.textContent = `${changePercent > 0 ? '+' : ''}${changePercent.toFixed(2)}%`;
+                change.className = `value ${changePercent > 0 ? 'positive' : 'negative'}`;
+                
+                const newMarketCap = newPrice * 1000000000000;
+                marketCap.textContent = '$' + (newMarketCap / 1000000).toFixed(2) + 'M';
+            }, 5000);
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            createCoins();
+            updatePriceTicker();
+            
+            // Add scroll event listener for reveal animations
+            window.addEventListener('scroll', handleReveal);
+            handleReveal(); // Initial check
+
+            // Create particle effect
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particles';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+                document.body.appendChild(particle);
+            }
+
+            // Remove loading overlay
+            setTimeout(() => {
+                document.querySelector('.loading-overlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loading-overlay').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Reveal animations on scroll
+        function handleReveal() {
+            const reveals = document.querySelectorAll('.magic-reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('revealed');
+                }
+            });
+        }
+
+        // Add reveal class to sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('magic-reveal');
+        });
+
+        // Add smooth scrolling to navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add loading state to buttons
+        document.querySelectorAll('.magic-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Casting...';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 1500);
+            });
+        });
+
+        // Create magic portal effect
+        function createPortalEffect(x, y) {
+            const portal = document.createElement('div');
+            portal.className = 'portal-effect';
+            portal.style.left = `${x - 50}px`;
+            portal.style.top = `${y - 50}px`;
+            document.body.appendChild(portal);
+
+            portal.style.opacity = '1';
+            portal.style.transform = 'scale(0)';
+            
+            requestAnimationFrame(() => {
+                portal.style.transition = 'all 0.5s ease';
+                portal.style.transform = 'scale(1)';
+                portal.style.opacity = '0';
+            });
+
+            setTimeout(() => portal.remove(), 500);
+        }
+
+        // Enhanced button interactions
+        document.querySelectorAll('.magic-button').forEach(button => {
+            button.addEventListener('mouseenter', (e) => {
+                createPortalEffect(e.clientX, e.clientY);
+            });
+        });
+
+        // Achievement system
+        const achievements = [
+            { id: 'first_meme', title: 'First Meme Created!', description: 'You cast your first meme spell!' },
+            { id: 'calculator', title: 'Fortune Teller', description: 'You predicted your magical rewards!' },
+            { id: 'theme_toggle', title: 'Master of Light and Dark', description: 'You controlled the magical realms!' }
+        ];
+
+        function showAchievement(achievement) {
+            const achievementDiv = document.createElement('div');
+            achievementDiv.className = 'achievement';
+            achievementDiv.innerHTML = `
+                <h4>🏆 ${achievement.title}</h4>
+                <p>${achievement.description}</p>
+            `;
+            document.body.appendChild(achievementDiv);
+            
+            setTimeout(() => achievementDiv.classList.add('show'), 100);
+            setTimeout(() => {
+                achievementDiv.classList.remove('show');
+                setTimeout(() => achievementDiv.remove(), 300);
+            }, 3000);
+        }
+
+        // Magic wand cursor
+        const cursor = document.createElement('div');
+        cursor.className = 'magic-cursor';
+        cursor.innerHTML = '🪄';
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            // Tilt the wand based on movement
+            const moveX = e.movementX;
+            const moveY = e.movementY;
+            const rotation = Math.atan2(moveY, moveX) * (180 / Math.PI);
+            cursor.style.transform = `rotate(${rotation}deg)`;
+        });
+
+        function copyContractAddress() {
+            const address = '0xf3bdf1EF312A4cdD779A5FE30c9A796573a7d1Ca';
+            navigator.clipboard.writeText(address);
+            showAchievement({ 
+                id: 'copy_address', 
+                title: 'Ready to Buy!', 
+                description: 'Contract address copied to clipboard! 🪄' 
+            });
+        }
+
+        // Enhanced Flying Wizard Animation
+        function createFlyingWizard() {
+            const wizard = document.createElement('img');
+            wizard.src = './assets/wizard-mascot.png';
+            wizard.className = 'flying-wizard';
+            document.body.appendChild(wizard);
+
+            let currentX = window.innerWidth / 2;
+            let currentY = window.innerHeight / 2;
+            let targetX = currentX;
+            let targetY = currentY;
+            let velocity = { x: 0, y: 0 };
+            let acceleration = { x: 0, y: 0 };
+
+            function createTrace(x, y) {
+                const trace = document.createElement('div');
+                trace.className = 'wizard-trace';
+                trace.style.left = x + 'px';
+                trace.style.top = y + 'px';
+                document.body.appendChild(trace);
+                setTimeout(() => trace.remove(), 1200);
+            }
+
+            function updatePosition() {
+                if (Math.random() < 0.02) { // 2% chance to change direction
+                    targetX = Math.random() * (window.innerWidth - 180);
+                    targetY = Math.random() * (window.innerHeight - 180);
+                    
+                    // Add random acceleration
+                    acceleration.x = (Math.random() - 0.5) * 0.2;
+                    acceleration.y = (Math.random() - 0.5) * 0.2;
+                }
+
+                // Apply acceleration to velocity
+                velocity.x += acceleration.x;
+                velocity.y += acceleration.y;
+                
+                // Dampen velocity
+                velocity.x *= 0.95;
+                velocity.y *= 0.95;
+
+                // Smooth movement towards target with velocity
+                currentX += (targetX - currentX) * 0.05 + velocity.x;
+                currentY += (targetY - currentY) * 0.05 + velocity.y;
+
+                // Keep wizard within bounds
+                currentX = Math.max(0, Math.min(currentX, window.innerWidth - 180));
+                currentY = Math.max(0, Math.min(currentY, window.innerHeight - 180));
+
+                // Update wizard position
+                wizard.style.left = currentX + 'px';
+                wizard.style.top = currentY + 'px';
+
+                // Create trace with random offset and size variation
+                if (Math.random() < 0.4) { // 40% chance to create trace
+                    const traceX = currentX + 90 + (Math.random() * 30 - 15);
+                    const traceY = currentY + 90 + (Math.random() * 30 - 15);
+                    createTrace(traceX, traceY);
+                }
+
+                // Add dynamic spinning based on movement
+                const movement = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+                const rotationAngle = Math.sin(Date.now() / 500) * 15 * (1 + movement);
+                const scale = 1 + movement * 0.1;
+                wizard.style.transform = `rotate(${rotationAngle}deg) scale(${scale})`;
+
+                requestAnimationFrame(updatePosition);
+            }
+
+            updatePosition();
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            createCoins();
+            createFlyingWizard();
+            updatePriceTicker();
+            
+            // Add scroll event listener for reveal animations
+            window.addEventListener('scroll', handleReveal);
+            handleReveal(); // Initial check
+
+            // Create particle effect
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particles';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+                document.body.appendChild(particle);
+            }
+
+            // Remove loading overlay
+            setTimeout(() => {
+                document.querySelector('.loading-overlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loading-overlay').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Hamburger menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 
